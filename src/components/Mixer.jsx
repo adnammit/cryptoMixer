@@ -2,10 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
+import AddTransaction from './AddTransaction.jsx';
+import AddFunds from './AddFunds.jsx';
+
 function Header (props) {
 	return (
 		<div className="header">
-			<h1>JMix : Transactions for [ {props.depositAddress} ]</h1>
+			<h1>JMix Transactions</h1>
+            <p> [ logged in as {props.depositAddress} ] </p>
             <div className="table-header">
                 <div className="table-header-date">
                     <h2>Date</h2>
@@ -28,10 +32,14 @@ Header.propTypes = {
 };
 
 function Item (props) {
+    function displayMoney(amount) {
+        return '$' + Number.parseFloat(amount).toFixed(2);
+    }
+    let amount = displayMoney(props.amount);
 	return (
 		<div className="item">
-			<div className="item-date">
-				{props.timestamp}
+            <div className="item-date">
+				{props.date}
 			</div>
             <div className="item-from">
 				{props.fromAddress}
@@ -40,7 +48,7 @@ function Item (props) {
                 {props.toAddress}
             </div>
 			<div className="item-amount">
-				{props.amount}
+				{amount}
 			</div>
 		</div>
 	);
@@ -49,17 +57,17 @@ Item.propTypes = {
     amount: PropTypes.string.isRequired,
     fromAddress: PropTypes.string,
     toAddress: PropTypes.string.isRequired,
-    timestamp: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
 };
 
 class Mixer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            transactions: props.transactions,
-            loggedIn: props.loggedIn,
-            depositAddress: props.depositAddress,
-        }
+        // this.state = {
+        //     transactions: props.transactions,
+        //     loggedIn: props.loggedIn,
+        //     depositAddress: props.depositAddress,
+        // }
     }
 
     // componentDidMount() {
@@ -76,7 +84,7 @@ class Mixer extends React.Component {
                             return (
                                 <Item
                                     amount={item.amount}
-                                    timestamp={item.timestamp}
+                                    date={item.date}
                                     toAddress={item.toAddress}
                                     fromAddress={item.fromAddress}
                                     key={item.id}
@@ -85,22 +93,25 @@ class Mixer extends React.Component {
                         }
                     }.bind(this))}
                 </div>
+                <AddTransaction depositAddress={this.props.depositAddress}  addTransaction={this.props.onAddTransaction} />
+                <AddFunds depositAddress={this.props.depositAddress}  onAddFunds={this.props.onAddFunds} />
             </div>
         );
 	}
 }
-Mixer.defaultProps = {
-};
-Mixer.propTypes = {
-    depositAddress: PropTypes.string.isRequired,
-	transactions: PropTypes.arrayOf(PropTypes.shape({
-		amount: PropTypes.string.isRequired,
-        fromAddress: PropTypes.string,
-		toAddress: PropTypes.string.isRequired,
-        timestamp: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired,
-	})).isRequired,
-    onUpdate: PropTypes.func.isRequired,
-};
+// Mixer.defaultProps = {
+//     // updateTransactions: PropTypes.func.isRequired,
+//     addTransaction: PropTypes.func.isRequired,
+// };
+// Mixer.propTypes = {
+//     depositAddress: PropTypes.string.isRequired,
+// 	transactions: PropTypes.arrayOf(PropTypes.shape({
+// 		amount: PropTypes.string.isRequired,
+//         fromAddress: PropTypes.string,
+// 		toAddress: PropTypes.string.isRequired,
+//         date: PropTypes.string.isRequired,
+//         id: PropTypes.number.isRequired,
+// 	})).isRequired,
+// };
 
 export default Mixer;
