@@ -26,7 +26,6 @@ class Login extends React.Component {
         this.setState({loggedIn: true});
         this.setState({depositAddress: e.target.value});
         this.props.onLogin(true,this.state.depositAddress);
-        // this.props.onLogin(this.state.loggedIn,this.state.depositAddress);
     }
     onDepositChange(e) {
         this.setState({depositAddress: e.target.value});
@@ -41,9 +40,6 @@ class Login extends React.Component {
             this.setState({depositAddress: 'Your JMix Address'});
         }
     }
-    // onCreateNew(e) {
-    //
-    // }
 
     render() {
         return (
