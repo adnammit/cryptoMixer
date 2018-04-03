@@ -7,28 +7,29 @@ class AddFunds extends React.Component {
         super(props);
         this.state = {
             amount: props.amount,
-            fromAddress: props.fromAddress,
+            // fromAddress: props.fromAddress,
             defaultAmount: props.defaultAmount,
-            defaultAddress: props.defaultAddress,
+            // defaultAddress: props.defaultAddress,
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.onAmountChange = this.onAmountChange.bind(this);
         this.onAmountFocus = this.onAmountFocus.bind(this);
         this.onAmountBlur = this.onAmountBlur.bind(this);
-        this.onAddressChange = this.onAddressChange.bind(this);
-        this.onAddressFocus = this.onAddressFocus.bind(this);
-        this.onAddressBlur = this.onAddressBlur.bind(this);
+        // this.onAddressChange = this.onAddressChange.bind(this);
+        // this.onAddressFocus = this.onAddressFocus.bind(this);
+        // this.onAddressBlur = this.onAddressBlur.bind(this);
     }
     onSubmit(e) {
         e.preventDefault();
 
         let transaction = {
             amount: this.state.amount,
-            toAddress: this.props.depositAddress,
-            fromAddress: this.state.fromAddress,
+            toAddress: this.props.houseAddress,
+            fromAddress: this.props.primaryAddress,
         };
 
         this.props.onHandleTransaction(transaction);
+        this.props.onMixFunds(this.state.amount);
     }
     onAmountChange(e) {
         let val = e.target.value;
@@ -54,28 +55,32 @@ class AddFunds extends React.Component {
             this.setState({amount: this.state.defaultAmount});
         }
     }
-    onAddressChange(e) {
-        this.setState({fromAddress: e.target.value});
-    }
-    onAddressFocus(e) {
-        if(e.target.value == this.state.defaultAddress) {
-            this.setState({fromAddress: ''});
-        }
-    }
-    onAddressBlur(e) {
-        if(e.target.value == '') {
-            this.setState({fromAddress: this.state.defaultAddress});
-        }
-    }
+    // onAddressChange(e) {
+    //     this.setState({fromAddress: e.target.value});
+    // }
+    // onAddressFocus(e) {
+    //     if(e.target.value == this.state.defaultAddress) {
+    //         this.setState({fromAddress: ''});
+    //     }
+    // }
+    // onAddressBlur(e) {
+    //     if(e.target.value == '') {
+    //         this.setState({fromAddress: this.state.defaultAddress});
+    //     }
+    // }
 
     render() {
         return (
             <div className="add-transaction">
-                <h2>Add Jobcoin</h2>
-                <p>Send Jobcoin to JMix be deposited into your withdrawal addresses:</p>
+                <h2>Mix Jobcoin</h2>
+                <p>Send Jobcoin from [{this.props.primaryAddress}] to JMix be deposited into your withdrawal addresses:</p>
                 <form onSubmit={this.onSubmit}>
+                    {/*
                     <input type="text" value={this.state.fromAddress} onChange={this.onAddressChange} onFocus={this.onAddressFocus} onBlur={this.onAddressBlur}/>
+                    */}
+
                     <input type="text" value={this.state.amount} onChange={this.onAmountChange} onFocus={this.onAmountFocus} onBlur={this.onAmountBlur} />
+
                     <input className="add-button" type="submit" value="Send" />
                 </form>
             </div>
@@ -84,9 +89,9 @@ class AddFunds extends React.Component {
 }
 AddFunds.defaultProps = {
     amount: '$0',
-    fromAddress: 'Withdraw from Account',
+    // fromAddress: 'Withdraw from Account',
     defaultAmount: '$0',
-    defaultAddress: 'Withdraw from Account',
+    // defaultAddress: 'Withdraw from Account',
 };
 
 export default AddFunds;

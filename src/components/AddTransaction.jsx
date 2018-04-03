@@ -25,7 +25,7 @@ class AddTransaction extends React.Component {
         let transaction = {
             amount: this.state.amount,
             toAddress: this.state.toAddress,
-            fromAddress: this.props.depositAddress,
+            fromAddress: this.props.primaryAddress,
         };
 
         this.props.onHandleTransaction(transaction);
@@ -72,12 +72,12 @@ class AddTransaction extends React.Component {
     }
     // onAddressFocus(e) {
     //     if(e.target.value == 'Your JMix Address') {
-    //         this.setState({depositAddress: ''});
+    //         this.setState({primaryAddress: ''});
     //     }
     // }
     // onAddressBlur(e) {
     //     if(e.target.value == '') {
-    //         this.setState({depositAddress: 'Your JMix Address'});
+    //         this.setState({primaryAddress: 'Your JMix Address'});
     //     }
     // }
 

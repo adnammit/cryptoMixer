@@ -10,7 +10,7 @@ function Header (props) {
 		<div className="header">
 			<h1>JMix Transactions</h1>
             <div className="user-info">
-                <p> [ logged in as {props.depositAddress} ] </p>
+                <p> [ logged in as {props.primaryAddress} ] </p>
                 <input className="logout-button" type="submit" value="Log Out" onClick={props.onLogout} />
             </div>
             <div className="table-header">
@@ -31,7 +31,7 @@ function Header (props) {
 	);
 }
 Header.propTypes = {
-    depositAddress: PropTypes.string.isRequired
+    primaryAddress: PropTypes.string.isRequired
 };
 
 function Item (props) {
@@ -71,7 +71,7 @@ class Mixer extends React.Component {
     render() {
         return (
             <div className="mixer">
-                <Header depositAddress={this.props.depositAddress} onLogout={this.props.onLogout} />
+                <Header primaryAddress={this.props.primaryAddress} onLogout={this.props.onLogout} />
                 <div className="items">
                     {this.props.transactions.map(function(item, index) {
                         if(item) {
@@ -88,8 +88,8 @@ class Mixer extends React.Component {
                     }.bind(this))}
                 </div>
                 <div className="transaction-elems">
-                    <AddTransaction depositAddress={this.props.depositAddress}  onHandleTransaction={this.props.onHandleTransaction} />
-                    <AddFunds depositAddress={this.props.depositAddress}  onHandleTransaction={this.props.onHandleTransaction} />
+                    <AddTransaction primaryAddress={this.props.primaryAddress}  onHandleTransaction={this.props.onHandleTransaction} />
+                    <AddFunds primaryAddress={this.props.primaryAddress} houseAddress={this.props.houseAddress}  onHandleTransaction={this.props.onHandleTransaction} onMixFunds={this.props.onMixFunds} />
                 </div>
             </div>
         );
