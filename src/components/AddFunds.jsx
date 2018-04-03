@@ -6,82 +6,87 @@ class AddFunds extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // depositAddress: props.depositAddress,
             amount: props.amount,
-            // toAddress: props.toAddress,
+            fromAddress: props.fromAddress,
+            defaultAmount: props.defaultAmount,
+            defaultAddress: props.defaultAddress,
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.onAmountChange = this.onAmountChange.bind(this);
-        // this.onAmountFocus = this.onAmountFocus.bind(this);
-        // this.onAmountBlur = this.onAmountBlur.bind(this);
-        // this.onAddressChange = this.onAddressChange.bind(this);
+        this.onAmountFocus = this.onAmountFocus.bind(this);
+        this.onAmountBlur = this.onAmountBlur.bind(this);
+        this.onAddressChange = this.onAddressChange.bind(this);
+        this.onAddressFocus = this.onAddressFocus.bind(this);
+        this.onAddressBlur = this.onAddressBlur.bind(this);
     }
     onSubmit(e) {
         e.preventDefault();
 
-        var transaction = {
+        let transaction = {
             amount: this.state.amount,
-            toAddress: this.state.depositAddress,
+            toAddress: this.props.depositAddress,
+            fromAddress: this.state.fromAddress,
         };
 
-        this.props.onAddFunds(transaction);
+        this.props.onHandleTransaction(transaction);
     }
     onAmountChange(e) {
-        // var amt = parseInt(e.target.value);
-        var val = e.target.value;
-        if(isNaN(val))
-            alert("Please enter a numerical value.");
-        else
-            this.setState({amount: e.target.value});
+        let val = e.target.value;
+        if(val) {
+
+            if (/\b\$+/.test(val))
+                val = val.substring(1);
+            if(isNaN(val)) {
+                this.setState({amount: this.state.defaultAmount});
+                alert("Please enter a numerical value.");
+            }
+            else
+                this.setState({amount: e.target.value});
+        }
     }
-    // onAmountFocus(e) {
-    //     if(e.target.value == 'Enter Amount') {
-    //         this.setState({amount: ''});
-    //     }
-    // }
-    // onAmountBlur(e) {
-    //     if(e.target.value == '') {
-    //         this.setState({amount: 'Enter Amount'});
-    //     }
-    // }
+    onAmountFocus(e) {
+        if(e.target.value == this.state.defaultAmount) {
+            this.setState({amount: ''});
+        }
+    }
+    onAmountBlur(e) {
+        if(e.target.value == '') {
+            this.setState({amount: this.state.defaultAmount});
+        }
+    }
+    onAddressChange(e) {
+        this.setState({fromAddress: e.target.value});
+    }
+    onAddressFocus(e) {
+        if(e.target.value == this.state.defaultAddress) {
+            this.setState({fromAddress: ''});
+        }
+    }
+    onAddressBlur(e) {
+        if(e.target.value == '') {
+            this.setState({fromAddress: this.state.defaultAddress});
+        }
+    }
 
     render() {
         return (
             <div className="add-transaction">
-                <div className="container">
-                    <h1>Add Jobcoin</h1>
-                    <p>Send Jobcoin to be deposited into your accounts:</p>
-                    <form onSubmit={this.onSubmit}>
-                        <input type="text" value={this.state.amount} onChange={this.onAmountChange} />
-                        <input type="submit" value="Send" />
-                    </form>
-                </div>
+                <h2>Add Jobcoin</h2>
+                <p>Send Jobcoin to JMix be deposited into your withdrawal addresses:</p>
+                <form onSubmit={this.onSubmit}>
+                    <input type="text" value={this.state.fromAddress} onChange={this.onAddressChange} onFocus={this.onAddressFocus} onBlur={this.onAddressBlur}/>
+                    <input type="text" value={this.state.amount} onChange={this.onAmountChange} onFocus={this.onAmountFocus} onBlur={this.onAmountBlur} />
+                    <input className="add-button" type="submit" value="Send" />
+                </form>
             </div>
         );
-        //
-        // return (
-        //     <div className="add-transaction">
-        //         <div className="container">
-        //             <h1>Add Jobcoin</h1>
-        //             <p>Send Jobcoin to be deposited into your accounts:</p>
-        //             <form onSubmit={this.props.onDeposit}>
-        //                 <input type="text" value={this.state.amount} onChange={this.onAmountChange} onFocus={this.onAmountFocus} onBlur={this.onAmountBlur} />
-        //                 <input type="submit" value="Send" />
-        //             </form>
-        //         </div>
-        //     </div>
-        // );
     }
 }
 AddFunds.defaultProps = {
-    amount: 0,
-    // toAddress: 'Enter Recipient Address',
-    // onUpdate: PropTypes.func.isRequired,
+    amount: '$0',
+    fromAddress: 'Withdraw from Account',
+    defaultAmount: '$0',
+    defaultAddress: 'Withdraw from Account',
 };
-// AddFunds.propTypes = {
-//     // depositAddress: PropTypes.string.isRequired,
-//     addTransaction: PropTypes.func.isRequired,
-//     // updateTransactions: PropTypes.func.isRequired,
-// };
 
 export default AddFunds;

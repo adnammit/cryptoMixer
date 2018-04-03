@@ -10,81 +10,42 @@
     text-align: center;
 
     .header {
-        // padding: 5px 10px;
+        padding: 10px;
         // text-align: center;
         // align-items: center;
         background-color: #222;
         border-radius: 5px 5px 0 0;
         border-bottom: solid 2px #444;
         letter-spacing: 3px;
-        // width: 100%;
 
-        h1 {
-            flex-grow: 1;
-            font-size: 1.75em;
-            font-weight: normal;
-            font-family: georgia;
-        }
-        p {
-            text-transform: none;
+        .user-info {
+            p {
+                display: inline;
+            }
+            input[type=submit] {
+                background-color: #333;
+            }
+            input[type=submit]:hover {
+                background: #4b71b5;
+            }
         }
     }
     .table-header {
         display: flex;
         width: 100%;
         height: 2.75em;
-        // padding: 10px;
         padding-bottom: 10px;
-        h2 {
-            font-size: 1.25em;
-            font-family: georgia;
-        }
+
         .table-header-date, .table-header-from, .table-header-to {
             .item .item-date;
         }
-        // .table-header-date {
-        //     .item-date;
-        // }
-        // .table-header-from {
-        //     .item-from;
-        // }
-        // .table-header-to {
-        //     .item-to;
-        // }
+
         .table-header-amount {
-            // .item-amount;
-            // background-color: inherit;
-            // color: inherit;
             flex-grow: 1;
             padding: 10px;
-            // text-align: center;
             width: 100px;
         }
     }
-
-
-    // .transactions {
-    //     margin-top: 0;
-    //
-    // }
-    //
-    // .transactions td {
-    //     font-size: 7em;
-    //     // text-align: right;
-    //     letter-spacing: 2px;
-    // }
-
-    // .transactions td:first-child {
-    //     font-weight: normal;
-    //     color: #666;
-    // }
-    //
-    // .transactions td:last-child {
-    //     // padding: 0px 20px;
-    //     font-size: 1.3em;
-    //     font-family: courier;
-    //     font-weight: bold;
-    // }
 
     .item {
         display: flex;
@@ -111,21 +72,8 @@
             // text-align: right;
         }
     }
-    //
-    // .item-date,  {
-    //     flex-grow: 1;
-    //     padding: 10px;
-    //     text-alig
-    //     width: 150px;
-    // }
-
-
-
-    // .item-to {
-    //     flex-grow: 1;
-    //     padding: 10px;
-    //     text-align: center;
-    //     width: 175px;
+    // .transaction-elems {
+    //     display: inline;
     // }
 
 
@@ -169,25 +117,5 @@
     //     background-color: #444;
     // }
     //
-    // .add-transaction-form input[type=submit] {
-    //     display: block;
-    //     font-size: .6em;
-    //     margin: 15px 15px 15px 0;
-    //     padding: 10px;
-    //     background-color: #333;
-    //     border-radius: 5px;
-    //     border: none;
-    //     color: #999;
-    //     letter-spacing: 2px;
-    //     font-weight: bold;
-    //     text-shadow: none;
-    //     text-transform: uppercase;
-    // }
-    //
-    // .add-transaction-form input[type=submit]:hover{
-    //     background: #4b71b5;
-    //     color: #fafafa;
-    //     cursor: pointer;
-    // }
-    //
+
 }

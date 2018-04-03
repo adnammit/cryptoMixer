@@ -9,19 +9,22 @@ function Header (props) {
 	return (
 		<div className="header">
 			<h1>JMix Transactions</h1>
-            <p> [ logged in as {props.depositAddress} ] </p>
+            <div className="user-info">
+                <p> [ logged in as {props.depositAddress} ] </p>
+                <input className="logout-button" type="submit" value="Log Out" onClick={props.onLogout} />
+            </div>
             <div className="table-header">
                 <div className="table-header-date">
-                    <h2>Date</h2>
+                    <h3>Date</h3>
                 </div>
                 <div className="table-header-from">
-                    <h2>From</h2>
+                    <h3>From</h3>
                 </div>
                 <div className="table-header-to">
-                    <h2>To</h2>
+                    <h3>To</h3>
                 </div>
                 <div className="table-header-amount">
-                    <h2>$</h2>
+                    <h3>$</h3>
                 </div>
             </div>
 		</div>
@@ -63,21 +66,12 @@ Item.propTypes = {
 class Mixer extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     transactions: props.transactions,
-        //     loggedIn: props.loggedIn,
-        //     depositAddress: props.depositAddress,
-        // }
     }
-
-    // componentDidMount() {
-    //     this.props.onUpdate();
-    // }
 
     render() {
         return (
             <div className="mixer">
-                <Header depositAddress={this.props.depositAddress} />
+                <Header depositAddress={this.props.depositAddress} onLogout={this.props.onLogout} />
                 <div className="items">
                     {this.props.transactions.map(function(item, index) {
                         if(item) {
@@ -93,25 +87,13 @@ class Mixer extends React.Component {
                         }
                     }.bind(this))}
                 </div>
-                <AddTransaction depositAddress={this.props.depositAddress}  addTransaction={this.props.onAddTransaction} />
-                <AddFunds depositAddress={this.props.depositAddress}  onAddFunds={this.props.onAddFunds} />
+                <div className="transaction-elems">
+                    <AddTransaction depositAddress={this.props.depositAddress}  onHandleTransaction={this.props.onHandleTransaction} />
+                    <AddFunds depositAddress={this.props.depositAddress}  onHandleTransaction={this.props.onHandleTransaction} />
+                </div>
             </div>
         );
-	}
+    }
 }
-// Mixer.defaultProps = {
-//     // updateTransactions: PropTypes.func.isRequired,
-//     addTransaction: PropTypes.func.isRequired,
-// };
-// Mixer.propTypes = {
-//     depositAddress: PropTypes.string.isRequired,
-// 	transactions: PropTypes.arrayOf(PropTypes.shape({
-// 		amount: PropTypes.string.isRequired,
-//         fromAddress: PropTypes.string,
-// 		toAddress: PropTypes.string.isRequired,
-//         date: PropTypes.string.isRequired,
-//         id: PropTypes.number.isRequired,
-// 	})).isRequired,
-// };
 
 export default Mixer;
