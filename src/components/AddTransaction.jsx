@@ -31,14 +31,11 @@ class AddTransaction extends React.Component {
         this.props.onHandleTransaction(transaction);
     }
     onAmountChange(e) {
-        // var amt = parseInt(e.target.value);
         let val = e.target.value;
         if(val) {
 
             if (/\b\$+/.test(val))
                 val = val.substring(1);
-                // if (val.substring(0,1) == '$')
-                //     val = val.substring(1);
             if(isNaN(val)) {
                 this.setState({amount: this.state.defaultAmount});
                 alert("Please enter a numerical value.");
@@ -70,16 +67,6 @@ class AddTransaction extends React.Component {
             this.setState({toAddress: this.state.defaultAddress});
         }
     }
-    // onAddressFocus(e) {
-    //     if(e.target.value == 'Your JMix Address') {
-    //         this.setState({primaryAddress: ''});
-    //     }
-    // }
-    // onAddressBlur(e) {
-    //     if(e.target.value == '') {
-    //         this.setState({primaryAddress: 'Your JMix Address'});
-    //     }
-    // }
 
     render() {
         return (

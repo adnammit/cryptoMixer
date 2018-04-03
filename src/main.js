@@ -131,7 +131,6 @@ class Application extends React.Component {
             if(request.readyState == XMLHttpRequest.DONE) {
                 console.log(request.responseText);
                 if (request.status == 200) {
-                    // let jsonObj = request.response;
                     console.log(request.response);
                     // we may want to delay this call in certain circumstances,
                     //   such as when we are updating many transactions
@@ -152,8 +151,8 @@ class Application extends React.Component {
         request.send(params);
     }
 
-    // --- funds must have already been sent to houseAddress,
-    // ---   perhaps provide this as a callback
+    // Take funds from houseAddress and distribute to user addresses
+    // --- funds must have already been sent to houseAddress
     onMixFunds(depositAmount) {
         const userAddresses = this.state.userAddresses;
         const houseAddress = this.state.houseAddress;

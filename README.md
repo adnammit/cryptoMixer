@@ -44,6 +44,7 @@ JMix is written with React, using NPM and Webpack.
         (Reason: missing token ‘access-control-allow-headers’ in CORS header
         ‘Access-Control-Allow-Headers’ from CORS preflight channel).
 * Calculate totals for the user's accounts
+* Currently the "Send Jobcoin" feature just sends funds from the user's primary address to another user's address, but this could be turned into a 'send through the mixer' functionality instead.
 * Find a more clever/random/secure way of generating a deposit address
 * Collect the modulus of the division of funds as a fee
     - for fun -- savvy users would only transfer amounts that are easily divisible and we'd end up in the poor house
