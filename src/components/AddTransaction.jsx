@@ -71,7 +71,7 @@ class AddTransaction extends React.Component {
     render() {
         return (
             <div className="add-transaction">
-                <h2>Send Jobcoin</h2>
+                <h2>Send Coin</h2>
                 <p>Enter a destination address and amount to send from your account:</p>
                 <form onSubmit={this.onSubmit}>
                     <input type="text" value={this.state.toAddress} onChange={this.onAddressChange} onFocus={this.onAddressFocus} onBlur={this.onAddressBlur}/>

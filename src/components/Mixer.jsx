@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
 import AddTransaction from './AddTransaction.jsx';
 import AddFunds from './AddFunds.jsx';
 
 function Header (props) {
-	return (
-		<div className="header">
-			<h1>JMix Transactions</h1>
+    return (
+        <div className="header">
+            <h1>JMix Transactions</h1>
             <div className="user-info">
                 <p> [ logged in as {props.primaryAddress} ] </p>
                 <input className="logout-button" type="submit" value="Log Out" onClick={props.onLogout} />
@@ -27,8 +26,8 @@ function Header (props) {
                     <h3>$</h3>
                 </div>
             </div>
-		</div>
-	);
+        </div>
+    );
 }
 Header.propTypes = {
     primaryAddress: PropTypes.string.isRequired
@@ -39,22 +38,22 @@ function Item (props) {
         return '$' + Number.parseFloat(amount).toFixed(2);
     }
     let amount = displayMoney(props.amount);
-	return (
-		<div className="item">
+    return (
+        <div className="item">
             <div className="item-date">
-				{props.date}
-			</div>
+                {props.date}
+            </div>
             <div className="item-from">
-				{props.fromAddress}
-			</div>
+                {props.fromAddress}
+            </div>
             <div className="item-to">
                 {props.toAddress}
             </div>
-			<div className="item-amount">
-				{amount}
-			</div>
-		</div>
-	);
+            <div className="item-amount">
+                {amount}
+            </div>
+        </div>
+    );
 }
 Item.propTypes = {
     amount: PropTypes.string.isRequired,

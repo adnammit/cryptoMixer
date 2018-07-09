@@ -12,7 +12,7 @@ class Login extends React.Component {
             <div className="login">
                 <div className="container">
                     <div className="header">
-                        <h1>Jmix: a Jobcoin Mixer</h1>
+                        <h1>Jmix: a Coin Mixer</h1>
                     </div>
                     <div className="section">
                         <h2>Deposit and Withdrawal Addresses</h2>

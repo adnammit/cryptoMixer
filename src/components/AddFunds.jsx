@@ -54,8 +54,8 @@ class AddFunds extends React.Component {
     render() {
         return (
             <div className="add-transaction">
-                <h2>Mix Jobcoin</h2>
-                <p>Send Jobcoin from [{this.props.primaryAddress}] to JMix be deposited into your withdrawal addresses:</p>
+                <h2>Mix Coin</h2>
+                <p>Send Coin from [{this.props.primaryAddress}] to JMix be deposited into your withdrawal addresses:</p>
                 <form onSubmit={this.onSubmit}>
 
                     <input type="text" value={this.state.amount} onChange={this.onAmountChange} onFocus={this.onAmountFocus} onBlur={this.onAmountBlur} />

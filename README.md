@@ -1,15 +1,14 @@
-# JMix Jobcoin Mixer: Disguising your Crypto Deposits
+# JMix: A Crypto Mixer
 
 ## OVERVIEW:
-JMix is a simple mixer for the imaginary cryptocurrency Jobcoin. A coin mixer makes cryptocurrency transactions more anonymous and harder to track.
+JMix is a simple mixer for an imaginary cryptocurrency. A coin mixer disguises the source of deposits and makes cryptocurrency transactions more anonymous and harder to track.
 
 JMix works as follows:
 * The user provides a primary address that JMix will withdraw funds from
-* The users also provides several other accounts that they own that the mixed funds will be deposited into
+* The user provides several other accounts that they own that the mixed funds will be deposited into
 * JMix automatically generates a house address where the coin to be mixed is sent
 * Once logged in, the user sends funds from their primary address to their JMix house address
 * Those funds are then divided up and distributed amongst the user's withdrawal accounts
-
 
 
 ## INSTALL AND START:
@@ -33,7 +32,7 @@ JMix is written with React, using NPM and Webpack.
 * JMix establishes the following. Can/should any of these things be used as login credentials?
     - the user's source address (where the funds come from)
     - the mixer's deposit account (where the user sends funds)
-    - the user's withdrawal accounts (where the Jobcoin ends up)
+    - the user's withdrawal accounts (where the coin ends up)
 * Add persistence so that the user's deposit address can be associated with the withdrawal addresses they provided
     - that way the user won't have to type all of their addresses in every time
     - currently providing the user with their JMix house address isn't necessary because they can't really do anything with it.
